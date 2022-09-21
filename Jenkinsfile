@@ -5,7 +5,7 @@ pipeline {
     }
     environment {
         registry = '740955001227.dkr.ecr.us-east-1.amazonaws.com/geo_ecr_repo'
-        registryCredential = 'emax-ecr-repo'
+        registryCredential = 'geo_ecr_repo'
         dockerimage = ''
   }
     stages {
@@ -37,7 +37,8 @@ pipeline {
             steps{
                 script {
                     sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 740955001227.dkr.ecr.us-east-1.amazonaws.com'
-                    sh 'docker push 740955001227.dkr.ecr.us-east-1.amazonaws.com/emax-ecr-repo:latest'
+                    sh 'docker tag geo_ecr_repo:latest 740955001227.dkr.ecr.us-east-1.amazonaws.com/geo_ecr_repo:latest'
+                    sh 'docker push 740955001227.dkr.ecr.us-east-1.amazonaws.com/geo_ecr_repo:latest'
                 }
             }
         }
