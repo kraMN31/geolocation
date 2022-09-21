@@ -5,7 +5,7 @@ pipeline {
     }
     environment {
         registry = '740955001227.dkr.ecr.us-east-1.amazonaws.com/emax_geo_ecr_repo'
-        registryCredential = 'emax-eks-user'
+        registryCredential = 'jenkins-ecr'
         dockerimage = ''
   }
     stages {
