@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: geolocation-ecr-rep-deployment
+  name: eks-cluster-ecr-deployment
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: geolocation-ecr-rep-app
+      app: eks-cluster-ecr-app
   template:
     metadata:
       labels:
-        app: geolocation-ecr-rep-app
+        app: eks-cluster-ecr-app
     spec:
       containers:
-      - name: geolocation-ecr-rep-app
+      - name: eks-cluster-ecr
         image: 740955001227.dkr.ecr.us-east-1.amazonaws.com/eks-cluster-ecr:latest
         imagePullPolicy: Always
         ports:
@@ -24,9 +24,9 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: geolocation-ecr-rep-app
-    k8s-app: geolocation-ecr-rep-app
-  name: geolocation-ecr-rep-app
+    app: eks-cluster-ecr-app
+    k8s-app: eks-cluster-ecr-app
+  name: eks-cluster-ecr-app
 spec:
   ports:
   - name: http
@@ -35,4 +35,4 @@ spec:
     targetPort: 8082
   type: LoadBalancer
   selector:
-    app: geolocation-ecr-rep-app
+    app: eks-cluster-ecr-app
