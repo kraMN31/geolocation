@@ -4,8 +4,8 @@ pipeline {
         maven 'M2_HOME'
     }
     environment {
-        registry = '740955001227.dkr.ecr.us-east-1.amazonaws.com/emax_geo_ecr_repo'
-        registryCredential = 'emax-eks-user'
+        registry = '740955001227.dkr.ecr.us-east-1.amazonaws.com/eks-cluster-ecr'
+        registryCredential = 'eks-cluster-user'
         dockerimage = ''
   }
     stages {
@@ -37,9 +37,9 @@ pipeline {
             steps{
                 script {
                     sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 740955001227.dkr.ecr.us-east-1.amazonaws.com'
-                    sh 'docker build -t emax_geo_ecr_repo .'
-                    sh 'docker tag emax_geo_ecr_repo:latest 740955001227.dkr.ecr.us-east-1.amazonaws.com/emax_geo_ecr_repo:latest'
-                    sh 'docker push 740955001227.dkr.ecr.us-east-1.amazonaws.com/emax_geo_ecr_repo'
+                    sh 'docker build -t eks-cluster-ecr .'
+                    sh 'docker tag eks-cluster-ecr:latest 740955001227.dkr.ecr.us-east-1.amazonaws.com/eks-cluster-ecr:latest'
+                    sh 'docker push 740955001227.dkr.ecr.us-east-1.amazonaws.com/eks-cluster-ecr:latest'
                 }
             }
         }
