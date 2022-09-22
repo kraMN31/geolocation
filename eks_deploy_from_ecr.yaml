@@ -13,7 +13,7 @@ spec:
         app: geolocation-ecr-rep-app
     spec:
       containers:
-      - name: eks-cluster-ecr
+      - name: geolocation-ecr-rep-app
         image: 740955001227.dkr.ecr.us-east-1.amazonaws.com/eks-cluster-ecr:latest
         imagePullPolicy: Always
         ports:
