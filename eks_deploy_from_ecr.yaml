@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: maven-ecr-deployment
+  name: maven-pipeline-deployment
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: maven-ecr-app
+      app: maven-pipeline-app
   template:
     metadata:
       labels:
-        app: maven-ecr-app
+        app: maven-pipeline-app
     spec:
       containers:
       - name: maven-ecr
@@ -24,9 +24,9 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: maven-ecr-app
-    k8s-app: maven-ecr-app
-  name: maven-ecr-app
+    app: maven-pipeline-app
+    k8s-app: maven-pipeline-app
+  name: maven-pipeline-app
 spec:
   ports:
   - name: http
@@ -35,4 +35,4 @@ spec:
     targetPort: 8082
   type: LoadBalancer
   selector:
-    app: maven-ecr-app
+    app: maven-pipeline-app
