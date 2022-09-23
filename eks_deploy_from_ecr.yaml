@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: eks-ecr-repo
-        image: 740955001227.dkr.ecr.us-east-1.amazonaws.com/eks-ecr-repo:latest
+        image: 740955001227.dkr.ecr.us-east-1.amazonaws.com/eks-ecr-repo
         imagePullPolicy: Always
         ports:
         - containerPort: 8082
