@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: eks-cluster-ecr-deployment
+  name: eks-ecr-repo-deployment
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: eks-cluster-ecr-app
+      app: eks-ecr-repo-app
   template:
     metadata:
       labels:
-        app: eks-cluster-ecr-app
+        app: eks-ecr-repo-app
     spec:
       containers:
-      - name: eks-cluster-ecr
-        image: 740955001227.dkr.ecr.us-east-1.amazonaws.com/eks-cluster-ecr:latest
+      - name: eks-ecr-repo
+        image: 740955001227.dkr.ecr.us-east-1.amazonaws.com/eks-ecr-repo:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 8082
@@ -24,9 +24,9 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: eks-cluster-ecr-app
-    k8s-app: eks-cluster-ecr-app
-  name: eks-cluster-ecr-app
+    app: eks-ecr-repo-app
+    k8s-app: eks-ecr-repo-app
+  name: eks-ecr-repo-app
 spec:
   ports:
   - name: http
@@ -35,4 +35,4 @@ spec:
     targetPort: 8082
   type: LoadBalancer
   selector:
-    app: eks-cluster-ecr-app
+    app: eks-ecr-repo-app
