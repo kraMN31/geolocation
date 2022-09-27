@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: maven-pipeline-deployment
+  name: eks-repo-deployment
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: maven-pipeline-app
+      app: eks-repo-app
   template:
     metadata:
       labels:
-        app: maven-pipeline-app
+        app: eks-repo-app
     spec:
       containers:
-      - name: maven-ecr
-        image: 740955001227.dkr.ecr.us-east-1.amazonaws.com/maven-ecr:latest
+      - name: eks-repo
+        image: 740955001227.dkr.ecr.us-east-1.amazonaws.com/eks-repo:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 8082
@@ -24,9 +24,9 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: maven-pipeline-app
-    k8s-app: maven-pipeline-app
-  name: maven-pipeline-app
+    app: eks-repo-app
+    k8s-app: eks-repo-app
+  name: eks-repo-app
 spec:
   ports:
   - name: http
@@ -35,4 +35,4 @@ spec:
     targetPort: 8082
   type: LoadBalancer
   selector:
-    app: maven-pipeline-app
+    app: eks-repo-app

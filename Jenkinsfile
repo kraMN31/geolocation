@@ -4,7 +4,7 @@ pipeline {
         maven 'M2_HOME'
     }
     environment {
-        registry = '740955001227.dkr.ecr.us-east-1.amazonaws.com/maven-ecr'
+        registry = '740955001227.dkr.ecr.us-east-1.amazonaws.com/eks-repo'
         registryCredential = 'aws_credential'
         dockerimage = ''
   }
@@ -37,9 +37,9 @@ pipeline {
             steps{
                 script {
                     sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 740955001227.dkr.ecr.us-east-1.amazonaws.com'
-                    sh 'docker build -t maven-ecr .'
-                    sh 'docker tag maven-ecr:latest 740955001227.dkr.ecr.us-east-1.amazonaws.com/maven-ecr:latest'
-                    sh 'docker push 740955001227.dkr.ecr.us-east-1.amazonaws.com/maven-ecr:latest'
+                    sh 'docker build -t eks-repo .'
+                    sh 'docker tag eks-repo:latest 740955001227.dkr.ecr.us-east-1.amazonaws.com/eks-repo:latest'
+                    sh 'docker push 740955001227.dkr.ecr.us-east-1.amazonaws.com/eks-repo:latest'
                 }
             }
         }
