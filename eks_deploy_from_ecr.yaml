@@ -13,7 +13,7 @@ spec:
         app: geo_ecr_repo-app
     spec:
       containers:
-      - name: geo_ecr_repo
+      - name: geo_ecr_repo-app
         image: 740955001227.dkr.ecr.us-east-1.amazonaws.com/geo_ecr_repo:latest
         imagePullPolicy: Always
         ports:
