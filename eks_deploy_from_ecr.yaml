@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: geo-ecr-repo-app
-        image: 740955001227.dkr.ecr.us-east-1.amazonaws.com/geo_ecr_repo:latest
+        image: 740955001227.dkr.ecr.us-east-1.amazonaws.com/geo-ecr-repo:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 8082
