@@ -5,7 +5,7 @@ pipeline {
     }
     environment {
         registry = '740955001227.dkr.ecr.us-east-1.amazonaws.com/geo-app'
-        registryCredential = 'aws_credential'
+        registryCredential = 'eks-cluster-user'
         dockerimage = ''
   }
     stages {
