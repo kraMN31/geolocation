@@ -4,7 +4,7 @@ pipeline {
         maven 'M2_HOME'
     }
     environment {
-        registry = '740955001227.dkr.ecr.us-east-1.amazonaws.com/geo-ecr-repo'
+        registry = '740955001227.dkr.ecr.us-east-1.amazonaws.com/geo-app'
         registryCredential = 'aws_credential'
         dockerimage = ''
   }
@@ -37,9 +37,9 @@ pipeline {
             steps{
                 script {
                     sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 740955001227.dkr.ecr.us-east-1.amazonaws.com'
-                    sh 'docker build -t geo-ecr-repo .'
-                    sh 'docker tag geo-ecr-repo:latest 740955001227.dkr.ecr.us-east-1.amazonaws.com/geo-ecr-repo:latest'
-                    sh 'docker push 740955001227.dkr.ecr.us-east-1.amazonaws.com/geo-ecr-repo:latest'
+                    sh 'docker build -t geo-app .'
+                    sh 'docker tag geo-app:latest 740955001227.dkr.ecr.us-east-1.amazonaws.com/geo-app:latest'
+                    sh 'docker push 740955001227.dkr.ecr.us-east-1.amazonaws.com/geo-app:latest'
                 }
             }
         }
